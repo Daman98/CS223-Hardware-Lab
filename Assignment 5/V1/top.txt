@@ -1,0 +1,125 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 03/12/2018 12:59:46 PM
+-- Design Name: 
+-- Module Name: top - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.Numeric_Std.all;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity top is
+port(
+     clk : in std_logic;
+     vec : in std_logic_vector(7 downto 0);
+     push : in std_logic;
+     comp : in std_logic;
+     rese : in std_logic;
+     sel : in std_logic_vector(3 downto 0);
+     ou : out std_logic_vector(15 downto 0)
+     );
+end top;
+
+architecture Behavioral of top is
+    type ram_type is array (15 downto 0) of std_logic_vector(15 downto 0);
+    signal ram : ram_type;
+    signal sele : std_logic_vector(3 downto 0);   
+begin
+        process(clk,push,comp)
+        variable temp : std_logic_vector(15 downto 0);
+        variable midsum : std_logic_vector(15 downto 0);
+        variable ran : std_logic_vector(15 downto 0);
+        variable c : integer range 0 to 10 := 0;
+        variable ma : integer range 0 to 10 := 0;
+        variable ram_copy : ram_type;
+        begin 
+            if rising_edge(clk) then 
+                --WRITE Mode
+                if push = '1' then
+                    ram_copy(conv_integer(sel)):= vec;
+                --COMPUTE Mode
+                elsif comp = '1' then
+                    -- Calculating Sum of Numbers
+                    ram_copy(8):= ram_copy(0)+ ram_copy(1)+ ram_copy(2)+ ram_copy(3)+ ram_copy(4)+ ram_copy(5)+ ram_copy(6)+ram_copy(7);
+--                    for i in 0 to 7 loop
+--                        ram_copy(8):= ram_copy(8) + ram_copy(i);
+--                    end loop;
+                    
+                    -- Calculating Mean of Numbers
+                    ram_copy(9) := "000" & ram_copy(8)(15 downto 3);
+                    
+                    -- Sorting Numbers (Bubble Sort)
+                    for i in 0 to 6 loop
+                        for j in 0 to 6-i loop
+                            if ram_copy(j) > ram_copy(j+1) then
+                                temp := ram_copy(j);
+                                ram_copy(j) := ram_copy(j+1);
+                                ram_copy(j+1) := temp ;
+                            end if;
+                        end loop;
+                    end loop;
+                    
+                    --Finding Median of Numbers After Sorting
+                    midsum := ram_copy(3)+ram_copy(4);
+                    ram_copy(10) := '0' & midsum(15 downto 1);
+                    
+                    --Maximum of Numbers
+                    ram_copy(11) := ram_copy(7);
+                    
+                    --Minimum of Numbers
+                    ram_copy(12) := ram_copy(0);
+                    
+                    --Finding Mode of Given Numbers
+                    for i in 0 to 6 loop
+                        if ram_copy(i) = ram_copy (i+1) then
+                            c := c+1;
+                            if c > ma then
+                               ma := c;
+                               ram_copy(13) := ram_copy(i); 
+                            end if;
+                        end if;
+                    end loop;
+                    
+                    --Finding Range
+                    ram_copy(14) := ram_copy(7) - ram_copy(0);
+                    
+                    --Finding Mid-Range
+                    ran := ram_copy(7)+ram_copy(0);
+                    ram_copy(15) := '0' & ran(15 downto 1);
+                --RESET Mode
+                elsif rese='1' then
+                    for i in 0 to 15 loop
+                        ram_copy(i) := "0000000000000000";
+                    end loop;
+                end if;
+                sele <= sel ;
+            end if;
+            ram <= ram_copy;
+        end process;   
+    ou <= ram(conv_integer(sele));    
+end Behavioral;
