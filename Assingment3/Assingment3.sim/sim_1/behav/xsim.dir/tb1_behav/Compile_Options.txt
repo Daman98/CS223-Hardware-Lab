@@ -1,0 +1,1 @@
+--debug "typical" --relax -L "xil_defaultlib" -L "secureip" --snapshot "tb1_behav" --prj "C:/Users/reliance digiital/HDL_Projects/Assingment3/Assingment3.sim/sim_1/behav/tb1.prj" "xil_defaultlib.tb1" 

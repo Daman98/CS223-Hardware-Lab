@@ -1,0 +1,21 @@
+Vivado Simulator 2014.1
+Copyright 1986-1999, 2001-2014 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2014.1/bin/unwrapped/win64.o/xelab.exe --debug typical --relax -L xil_defaultlib -L secureip --snapshot tb1_behav --prj C:/Users/reliance digiital/HDL_Projects/Assingment3/Assingment3.sim/sim_1/behav/tb1.prj xil_defaultlib.tb1 
+Multi-threading is on. Using 2 slave threads.
+Determining compilation order of HDL files.
+INFO: [VRFC 10-165] Analyzing Verilog file "C:/Xilinx/Vivado/2014.1/data/verilog/src/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/reliance digiital/HDL_Projects/Assingment3/Assingment3.srcs/sim_1/new/simulate.vhd" into library xil_defaultlib
+Starting static elaboration
+WARNING: [VRFC 10-122] alu2 remains a black-box since it has no binding entity [C:/Users/reliance digiital/HDL_Projects/Assingment3/Assingment3.srcs/sim_1/new/simulate.vhd:79]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavior of entity xil_defaultlib.tb1
+Waiting for 2 sub-compilation(s) to finish...
+Built simulation snapshot tb1_behav

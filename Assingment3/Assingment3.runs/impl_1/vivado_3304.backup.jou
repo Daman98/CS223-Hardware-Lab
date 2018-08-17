@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2014.1 (64-bit)
+# SW Build 881834 on Fri Apr  4 14:15:54 MDT 2014
+# IP Build 877625 on Fri Mar 28 16:29:15 MDT 2014
+# Start of session at: Fri Feb 09 10:20:13 2018
+# Process ID: 13752
+# Log file: C:/Users/reliance digiital/HDL_Projects/Assingment3/Assingment3.runs/impl_1/main.vdi
+# Journal file: C:/Users/reliance digiital/HDL_Projects/Assingment3/Assingment3.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source main.tcl -notrace
