@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2012.1 (64-bit)
+# Build 179419 by xbuild on Thu Apr 26 11:43:29 MDT 2012
+# Start of session at: Wed Apr 04 17:01:24 2018
+# Process ID: 11308
+# Log file: C:\Users\divyam\Desktop\project_2\vivado.log
+# Journal file: C:\Users\divyam\Desktop\project_2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {C:\Users\divyam\Desktop\project_2\project_2.xpr}
